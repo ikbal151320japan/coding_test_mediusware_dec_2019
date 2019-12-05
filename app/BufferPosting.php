@@ -14,5 +14,11 @@ class BufferPosting extends Model
     {
         return $this->hasOne(SocialAccounts::Class, 'id', 'account_id');
     }
+    
+    public function formatDateTime() {
+    	$dateTime = date_create($this->sent_at);
+
+    	return date_format($dateTime, 'g:ia \o\n l jS F Y');
+    }
 
 }

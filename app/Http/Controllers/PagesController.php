@@ -184,5 +184,13 @@ class PagesController extends Controller
         return view('auth.friday');
     }
 
+    public function history() {
+
+        $posts = BufferPosting::paginate(10);
+
+        return view('pages.history')->with('posts', $posts);
+
+    }
+
 
 }
