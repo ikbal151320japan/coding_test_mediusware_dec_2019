@@ -676,6 +676,13 @@ if($user_meta['temp_subs'] === true){
             });
         }
     });
+    $( "#datepicker" ).datepicker(
+        {
+            changeMonth: true, 
+            changeYear: true, 
+            dateFormat: 'MM dd, yy',
+        });
+    $("#datepicker").datepicker().datepicker("setDate", new Date());
 </script>
 </body>
 </html>
