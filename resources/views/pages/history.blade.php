@@ -12,14 +12,14 @@
 			<div class="col-md-4">
 				<div class="form-group has-search">
 				    <span class="fa fa-search form-control-feedback"></span>
-				    <input type="text" class="form-control" placeholder="Search">
+				    <input type="text" class="form-control" placeholder="Search" onkeyup="search_txt_field(this)" id='search_txt' autocomplete="off">
 				</div>
 			</div>
 			<div class="col-md-2">
-				<input type="" name="" class="form-control" id='datepicker' autocomplete="off">
+				<input type="" name="" class="form-control" id='datepicker' autocomplete="off" onchange="search_date_field(this)">
 			</div>
 			<div class="col-md-2">
-				<select class="form-control">
+				<select class="form-control" id='group_type' onchange="search_group_type_field(this)">
 					<option value="">All Group</option>
 					<option value="upload">Content Upload</option>
 					<option value="curation">Content Curation</option>
@@ -66,5 +66,33 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
 
+	function search_txt_field(obj)
+	{
+		var d = new Date($('#datepicker').val());
+		var datestring = d.getFullYear() +"-"+(d.getMonth()+1)+"-"+d.getDate();
+		search_field_populate_url($(obj).val(),datestring,$('#group_type').val());
+	};
+
+	function search_date_field(obj)
+	{
+		var d = new Date($('#datepicker').val());
+		var datestring = d.getFullYear() +"-"+(d.getMonth()+1)+"-"+d.getDate();
+		search_field_populate_url($('#search_txt').val(),datestring,$('#group_type').val());
+	}
+
+	function search_group_type_field(obj)
+	{
+		var d = new Date($('#datepicker').val());
+		var datestring = d.getFullYear() +"-"+(d.getMonth()+1)+"-"+d.getDate();
+		search_field_populate_url($('#search_txt').val(),datestring,$(obj).val());
+	}
+
+	function search_field_populate_url(search,date,group_type)
+	{
+		window.location.href = "./history?search="+search+"&date="+date+"&group_type="+group_type;
+		console.log(search+" : " + date + " : " + group_type);
+	}
+</script>
 @endsection

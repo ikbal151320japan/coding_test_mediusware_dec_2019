@@ -678,13 +678,30 @@ if($user_meta['temp_subs'] === true){
             });
         }
     });
-    $( "#datepicker" ).datepicker(
-        {
-            changeMonth: true, 
-            changeYear: true, 
-            dateFormat: 'MM dd, yy',
-        });
+    $("#datepicker").datepicker(
+    {
+        changeMonth: true, 
+        changeYear: true, 
+        dateFormat: 'MM dd, yy',
+    });
+
     $("#datepicker").datepicker().datepicker("setDate", new Date());
+
+    var date = "<?php echo $date; ?>";
+    console.log(date);
+    if(date == "")
+    {
+        $("#datepicker").datepicker().datepicker("setDate", new Date());
+    }
+    else
+    {
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        var d = new Date(date);
+        document.getElementById("datepicker").value = monthNames[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear();
+    }
+
 </script>
 </body>
 </html>

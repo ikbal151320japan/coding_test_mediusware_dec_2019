@@ -186,11 +186,15 @@ class PagesController extends Controller
 
     public function history() {
 
+        $date = isset($_GET['date']) ? $_GET['date'] : "";
         $posts = BufferPosting::paginate(10);
 
-        return view('pages.history')->with('posts', $posts);
+        $data = array(
+            'posts' => $posts,
+            'date' => $date
+        );  
+
+        return view('pages.history',compact(''))->with($data);
 
     }
-
-
 }
